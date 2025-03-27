@@ -1,0 +1,50 @@
+main {
+	position: relative;
+	height: 100vh;
+}
+
+.header {
+	position: fixed;
+	padding: 1rem;
+	width: 100%;
+}
+
+#form {
+	position: fixed;
+	width: 100%;
+	display: flex;
+}
+
+#input {
+	width: 100%;
+	height: 4.5rem;
+	padding: 1rem;
+	font-size: 1.5rem;
+}
+
+
+.submit {
+	padding: 0 2rem;
+}
+
+
+ul {
+	list-style: none;
+	padding: 5rem 0;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+}
+
+
+h1 {
+	color: palegoldenrod;
+}
+
+li {
+	background-color: #0026ca;
+	border-radius: 1rem;
+	padding: 1rem;
+	font-size: 1.5rem;
+	margin: 0.5rem;
+}

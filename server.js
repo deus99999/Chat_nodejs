@@ -3,6 +3,8 @@ const path = require('path')
 const fs = require('fs')
 const url = require('url')
 // const mysql = require('mysql2')
+const { Server } = require("socket.io")
+
 
 const pathToIndex = path.join(__dirname, 'static', 'index.html')
 const indexHtmlFile = fs.readFileSync(pathToIndex)
@@ -21,7 +23,7 @@ const ScriptlFile = fs.readFileSync(pathToScript)
 // 	database: 'chat'
 // })
 
-let sever = http.createServer(function(req, res) {
+let server = http.createServer(function(req, res) {
 	switch (req.url) {
 		case '/':
 			return res.end(indexHtmlFile)
@@ -35,13 +37,29 @@ let sever = http.createServer(function(req, res) {
 }
 )
 
+server.listen(3000)
+
 // connection.end()
+const io = new Server(server);
+
+io.on('connection', (socket) => {
+	console.log('a user connected. id - ' + socket.id)
+	let userNickname = 'user'
+
+	socket.on('set_nickname', (username) => {
+		userNickname = nickname
+	})
+
+	socket.on('new_message', (message) => {
+		console.log(message)
+		io.emit('message', userNickname + ':' + message)
+	})
+})
 
 
 // const dataPath = path.join(__dirname, 'data')
 
 	
-sever.listen(3000)
 
 
 // response.end()

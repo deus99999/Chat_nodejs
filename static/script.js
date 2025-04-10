@@ -20,7 +20,7 @@ socket.on('message', (msg) => {
 })
 
 function changeNickname() {
-	let nickname = promt('Choose your nickname')
+	let nickname = prompt('Choose your nickname')
 	if (nickname) {
 		socket.emit('set_nickname', nickname)
 	}

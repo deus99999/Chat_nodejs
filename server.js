@@ -2,6 +2,9 @@ const http = require('http')
 const path = require('path')
 const fs = require('fs')
 const url = require('url')
+
+const db = require('./database')
+
 // const mysql = require('mysql2')
 const { Server } = require("socket.io")
 
@@ -42,9 +45,11 @@ server.listen(3000)
 // connection.end()
 const io = new Server(server);
 
-io.on('connection', (socket) => {
+io.on('connection', async (socket) => {
 	console.log('a user connected. id - ' + socket.id)
 	let userNickname = 'user'
+
+	let messages = db.getMessages()
 
 	socket.on('set_nickname', (username) => {
 		userNickname = nickname
@@ -52,14 +57,12 @@ io.on('connection', (socket) => {
 
 	socket.on('new_message', (message) => {
 		console.log(message)
+		db.addMessage(message, 1)
 		io.emit('message', userNickname + ':' + message)
 	})
 })
 
 
-// const dataPath = path.join(__dirname, 'data')
-
 	
 
 
-// response.end()

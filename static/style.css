@@ -49,3 +49,27 @@ li {
 	font-size: 1.5rem;
 	margin: 0.5rem;
 }
+
+input {
+	padding: 0.7rem;
+}
+
+.register-form {
+	padding-top: 5rem;
+	height: calc(100vh - 4.5rem);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.register-form__container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 50vw;
+	padding: 1.5rem;
+	gap: 0.5rem;
+	background-color: #25AFFF;
+	border-radius: 10px;
+
+}

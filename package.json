@@ -19,6 +19,8 @@
   },
   "homepage": "https://github.com/deus99999/Chat_nodejs#readme",
   "dependencies": {
+    "cookie": "^1.0.2",
+    "crypto": "^1.0.1",
     "socket.io": "^4.8.1",
     "sqlite": "^5.1.1",
     "sqlite3": "^5.1.7"

@@ -117,9 +117,11 @@ const io = new Server(server);
 
 io.on('connection', async (socket) => {
 	console.log('a user connected. id - ' + socket.id)
-	let userNickname = 'user'
 
-	let messages = await db.getMessages()
+	// let userNickname = 'user'
+	let userNickname = socket.credentionals?.login
+	let userID = socket.credentionals?.user_id
+	let messages = db.getMessages()
 
 	socket.on('set_nickname', (nickname) => {
 		userNickname = nickname
@@ -127,11 +129,12 @@ io.on('connection', async (socket) => {
 
 	socket.on('new_message', (message) => {
 		console.log(message)
-		db.addMessage(message, 1)
+		db.addMessage(message, userID)
 		io.emit('message', userNickname + ':' + message)
 	})
 })
 
+<<<<<<< HEAD
 function guarded(req, res) {
 	const credentionals = getCredentionals(req.headers?.cookie)
 	if (!credentionals) {
@@ -148,6 +151,15 @@ function guarded(req, res) {
 	return res.end("Error 404")
 	
 }
+io.use((socket, next) => {
+	const cookie = socket.handshake.auth.cookie
+	const credentionals = getCredentionals(cookie)
+	if (!credentionals) {
+		next(new Error("no auth"))
+	}
+	socket.credentionals = credentionals
+	next()
+})
 	
 
 function getCredentionals(c = '') {

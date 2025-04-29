@@ -8,6 +8,9 @@
     "start": "node server.js",
     "dev": "nodemon server"
   },
+  "engines": {
+    "node": "20.x"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/deus99999/Chat_nodejs.git"
